@@ -14,16 +14,12 @@ public class Leaf implements FiniteSets{
     
     public Leaf(){
     }
-    
     public FiniteSets empty(){
         return new Leaf();
     }
-    
     public int cardinality(){
         return 0;
-    }
-
-    
+    } 
     public boolean isEmptyHuh(){
         return true;
     }
@@ -31,17 +27,25 @@ public class Leaf implements FiniteSets{
         return false;
     }
     public FiniteSets add(int elt){
-        return BSTNode(new Leaf(), elt, new Leaf());
+        return new BSTNode(new Leaf(), elt, new Leaf());
     }
     public FiniteSets remove(int elt){
         return new Leaf();
     }
-    public FiniteSets union(BST u){
-        
+    public FiniteSets union(FiniteSets u){
+        return u;
     }
-    public FiniteSets inter(BST u);
-    public FiniteSets diff(BST u);
-    public boolean equal(BST u);
-    public boolean subset(BST u);
+    public FiniteSets inter(FiniteSets u){
+        return new Leaf();
+    }
+    public FiniteSets diff(FiniteSets u){
+        return u;
+    }
+    public boolean equal(FiniteSets u){
+        return u.isEmptyHuh();
+    }
+    public boolean subset(FiniteSets u){
+        return u.isEmptyHuh();
+    }
     
 }

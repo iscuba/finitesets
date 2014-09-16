@@ -18,10 +18,10 @@ public interface FiniteSets {
     public boolean member(int elt);
     public FiniteSets add(int elt);
     public FiniteSets remove(int elt);
-    public FiniteSets union(BST u);
-    public FiniteSets inter(BST u);
-    public FiniteSets diff(BST u);
-    public boolean equal(BST u);
-    public boolean subset(BST u);
+    public FiniteSets union(FiniteSets u);
+    public FiniteSets inter(FiniteSets u);
+    public FiniteSets diff(FiniteSets u);
+    public boolean equal(FiniteSets u);
+    public boolean subset(FiniteSets u);
     
 }
