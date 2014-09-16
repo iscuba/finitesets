@@ -8,35 +8,44 @@ package finitesets;
  *
  * @author Isabella
  */
-public class BST {
-    protected BSTNode root, current;
-    protected BST left, right;
+public class BST implements FiniteSets{
+    protected BSTNode root;
 
     //Returns a new BST with nothing in it 
     public BST() {
         root = null;
     }
 
-    public BST(int data, BST left, BST right) {
-        BSTNode r = new BSTNode(data);
-        root = r;
-        this.left = left;
-        this.right = right;
-    }
+//    public BST(int data, BST left, BST right) {
+//        BSTNode r = new BSTNode(data);
+//        root = r;
+//        this.left = left;
+//        this.right = right;
+//    }
 
-    public boolean isEmpty(BST tree) {
+    public boolean isEmpty() {
         return root == null;
     }
 
-    public BST insert(BSTNode node) {
-        if(node.data <= current.data){
-            current = current.left;
-            insert(current);
-            if(node.data > current.){
-                
-            }
+    public void insert(int num) {
+        if (this.isEmpty()){
+            root = new BSTNode(num);
+        } else {
+            root.insert(num);
         }
-
     }
-
+    
+    public void delete(int i) {
+        if (isEmpty()) {
+            root.delete(i);
+        }
+        
+    }
+    
+    public boolean member(BST t, int i) {
+        if (t.isEmpty()){
+            return false;
+        }
+        return root.member(i);
+    }
 }

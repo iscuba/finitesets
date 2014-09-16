@@ -10,21 +10,16 @@ package finitesets;
  *
  * @author Isabella
  */
-public class BSTNode {
-    BSTNode left, right;
+public class BSTNode implements FiniteSets{
+    FiniteSets left, right;
     int data;
     
     //constructor for a new node wihout a data input results in a node with 
     //  data = 0
-    public BSTNode(){
-        left = null;
-        right = null;
-        data = 0;
-    }
     // constructor when usr knows the data 
-    public BSTNode(int n){
-        left = null;
-        right = null;
+    public BSTNode (FiniteSets left, int n, FiniteSets right){
+        this.left = left;
+        this.right = right;
         data = n;
     }
     
@@ -37,35 +32,35 @@ public class BSTNode {
                 left.insert(num); 
             }
             else { 
-                left = new BSTNode(num); 
+                left = new BSTNode(new Leaf(),num ,new Leaf()); 
             }
         }
         else if (right != null){
             right.insert(num);
         } else {
-            right = new BSTNode(num);
+            right = new BSTNode(new Leaf(), num, new Leaf());
         }
     }
     
-    public BSTNode delete(int num){
+    public FiniteSets remove(int num){
         if(num == data){
             return deleteRoot();
         }
         else{ 
             if(num < data){
                 if(left != null){
-                    left = left.delete(num);
+                    left = left.remove(num);
                 } 
             } else {
                 if (right != null){
-                    right = right.delete(num);
+                    right = right.remove(num);
                 }
                }
            return this;  
         }
     }
     
-    public BSTNode deleteRoot(){
+    public FiniteSets deleteRoot(){
         if(left != null){
             data = left.max();
             left = left.deleteMax();
@@ -97,7 +92,7 @@ public class BSTNode {
         }
     }
     
-    public BSTNode deleteMax() {
+    public FiniteSets deleteMax() {
         if (right == null) {
             return left;
         } else {
@@ -112,7 +107,7 @@ public class BSTNode {
         } else {
             return right.max();
         }
-    }
+    } 
     
     public void setRight(BSTNode n){ 
         right = n;
@@ -126,11 +121,11 @@ public class BSTNode {
         data = n;
     }
     
-    public BSTNode getLeft(){
+    public FiniteSets getLeft(){
         return left;
     }
     
-    public BSTNode getRight(){
+    public FiniteSets getRight(){
         return right;
     }
     

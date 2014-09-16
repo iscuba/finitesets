@@ -10,13 +10,18 @@ package finitesets;
  *
  * @author Isabella
  */
-public class FiniteSets {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-    }
+public interface FiniteSets {
+    
+    public FiniteSets empty();
+    public int cardinality();
+    public boolean isEmptyHuh();
+    public boolean member(int elt);
+    public FiniteSets add(int elt);
+    public FiniteSets remove(int elt);
+    public FiniteSets union(BST u);
+    public FiniteSets inter(BST u);
+    public FiniteSets diff(BST u);
+    public boolean equal(BST u);
+    public boolean subset(BST u);
     
 }
