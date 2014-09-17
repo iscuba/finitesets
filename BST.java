@@ -23,6 +23,7 @@ public class BST implements FiniteSets{
 //        this.right = right;
 //    }
 
+
     public boolean isEmpty() {
         return root == null;
     }
