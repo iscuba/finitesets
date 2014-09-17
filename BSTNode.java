@@ -25,8 +25,8 @@ public class BSTNode implements FiniteSets {
     }
 
     public int cardinality() {
-            return
-        }
+        return
+    }
 
     public boolean isEmptyHuh() {
         return false;
@@ -36,37 +36,44 @@ public class BSTNode implements FiniteSets {
         if (num == data) {
             return this;
         } else if (num < data) {
-                return new BSTNode(this.left.add(num), this.data, this.right);
+            return new BSTNode(this.left.add(num), this.data, this.right);
 //                if (!left.isEmptyHuh()) {
 //                    left.add(num);
 //                } else {
 //                    left = new BSTNode(new Leaf(), num, new Leaf());
 //                }
-            } 
-//            else if (!right.isEmptyHuh()) {
-//                right.add(num); 
+        } //            else if (!right.isEmptyHuh()) {
+        //                right.add(num); 
         else {
             return new BSTNode(this.left, this.data, this.right.add(num));
 //                right = new BSTNode(new Leaf(), num, new Leaf());
-            }
         }
     }
 
-    public FiniteSets remove(int num) {
-        if (num == data) {
-            return deleteRoot();
-        } else {
-            if (num < data) {
-                if (left != null) {
-                    left = left.remove(num);
-                }
-            } else {
-                if (right != null) {
-                    right = right.remove(num);
-                }
-            }
-            return this;
+    public FiniteSets remove(int elt) {
+        if (elt == this.data){
+// fix return value for this case             
+            return this.left;
+        } else if (elt < this.data){
+            return new BSTNode(left.remove(elt), this.data,right);
         }
+        else{
+            return new BSTNode(right, this.data,right.remove(elt));
+        }
+//        if (num == data) {
+//            return deleteRoot();
+//        } else {
+//            if (num < data) {
+//                if (left != null) {
+//                    left = left.remove(num);
+//                }
+//            } else {
+//                if (right != null) {
+//                    right = right.remove(num);
+//                }
+//            }
+//            return this;
+//        }
     }
 
     public boolean member(int elt) {
@@ -86,11 +93,13 @@ public class BSTNode implements FiniteSets {
     }
 
     public FiniteSets inter(FiniteSets u) {
-        if(u.member(this.data))
-            return new BSTNode(this.left.inter(u), data,this.right.inter(u));
-        else 
+        if (u.member(this.data)) {
+            return new BSTNode(this.left.inter(u), data, this.right.inter(u));
+        } else {
             return 
             
+    
+        }
     }
 
     public FiniteSets diff(FiniteSets u) {
