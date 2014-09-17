@@ -53,12 +53,12 @@ public class BSTNode implements FiniteSets {
     public FiniteSets remove(int elt) {
         if (elt == this.data){
 // fix return value for this case             
-            return this.left;
+            return this.left.union(this.right);
         } else if (elt < this.data){
             return new BSTNode(left.remove(elt), this.data,right);
         }
         else{
-            return new BSTNode(right, this.data,right.remove(elt));
+            return new BSTNode(left, this.data,right.remove(elt));
         }
 //        if (num == data) {
 //            return deleteRoot();
@@ -96,77 +96,30 @@ public class BSTNode implements FiniteSets {
         if (u.member(this.data)) {
             return new BSTNode(this.left.inter(u), data, this.right.inter(u));
         } else {
-            return 
-            
-    
+            return left.inter(u).union(right.inter(u));
         }
     }
 
     public FiniteSets diff(FiniteSets u) {
-        if (!u.member(data)){
-            return new BSTNode(this.left.diff(u), data, this.right.diff(u));
-        }
+        if (u.member(data)){
+            return left.diff(u).union(right.diff(u));
+        } 
         else{
-            return 
+            return new BSTNode(left.diff(u), data, right.diff(u));  
         }
     }
 
     public boolean equal(FiniteSets u) {
-
+        if (u.member(data))
     }
 
     public boolean subset(FiniteSets u) {
-
-    }
-
-    public FiniteSets deleteRoot() {
-        if (left != null) {
-            data = left.max();
-            left = left.deleteMax();
-            return this;
-        } else {
-            return right;
+        if(this.equal(u))
+            return true;
+        else if{
+            
         }
+
     }
 
-    public FiniteSets deleteMax() {
-        if (right == null) {
-            return left;
-        } else {
-            right = right.deleteMax();
-            return this;
-        }
-    }
-
-    public int max() {
-        if (right == null) {
-            return data;
-        } else {
-            return right.max();
-        }
-    }
-
-    public void setRight(BSTNode n) {
-        right = n;
-    }
-
-    public void setLeft(BSTNode n) {
-        left = n;
-    }
-
-    public void setData(int n) {
-        data = n;
-    }
-
-    public FiniteSets getLeft() {
-        return left;
-    }
-
-    public FiniteSets getRight() {
-        return right;
-    }
-
-    public int getData() {
-        return data;
-    }
 }
