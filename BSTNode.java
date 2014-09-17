@@ -25,7 +25,7 @@ public class BSTNode implements FiniteSets {
     }
 
     public int cardinality() {
-        return
+        return 1 + left.cardinality() + right.cardinality();
     }
 
     public boolean isEmptyHuh() {
@@ -103,7 +103,12 @@ public class BSTNode implements FiniteSets {
     }
 
     public FiniteSets diff(FiniteSets u) {
-
+        if (!u.member(data)){
+            return new BSTNode(this.left.diff(u), data, this.right.diff(u));
+        }
+        else{
+            return 
+        }
     }
 
     public boolean equal(FiniteSets u) {
