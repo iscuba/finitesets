@@ -12,7 +12,7 @@ package finitesets;
 public class BSTNode implements FiniteSets {
 
     FiniteSets left, right;
-    int data, count;
+    int data;
 
     public BSTNode(FiniteSets left, int n, FiniteSets right) {
         this.left = left;
@@ -25,12 +25,8 @@ public class BSTNode implements FiniteSets {
     }
 
     public int cardinality() {
-        if (this.isEmptyHuh()) {
-            return 0;
-        } else {
-            return count + 1;
+            return
         }
-    }
 
     public boolean isEmptyHuh() {
         return false;
@@ -39,23 +35,21 @@ public class BSTNode implements FiniteSets {
     public FiniteSets add(int num) {
         if (num == data) {
             return this;
-        } else {
-            if (num < data) {
-                if (!left.isEmptyHuh()) {
-                    left.add(num);
-                } else {
-                    left = new BSTNode(new Leaf(), num, new Leaf());
-                    count++;
-                }
-            } else if (!right.isEmptyHuh()) {
-                right.add(num);
-            } else {
-                right = new BSTNode(new Leaf(), num, new Leaf());
-                count++;
+        } else if (num < data) {
+                return new BSTNode(this.left.add(num), this.data, this.right);
+//                if (!left.isEmptyHuh()) {
+//                    left.add(num);
+//                } else {
+//                    left = new BSTNode(new Leaf(), num, new Leaf());
+//                }
+            } 
+//            else if (!right.isEmptyHuh()) {
+//                right.add(num); 
+        else {
+            return new BSTNode(this.left, this.data, this.right.add(num));
+//                right = new BSTNode(new Leaf(), num, new Leaf());
             }
-            return this;
         }
-
     }
 
     public FiniteSets remove(int num) {
