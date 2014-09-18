@@ -44,18 +44,17 @@ public class Test {
         return ((set1.cardinality() + 1) == (set1.add(num).cardinality()));
     }
  
-    // I don't think this is supposed to be like this 
     public boolean testUnionMember(FiniteSets set1, FiniteSets set2, int num){
         if(set1.union(set2).member(num)){
             return (set1.member(num)||(set2.member(num)));
         } else {
             System.out.println("the number was not a member of the set");
-            return (set1.union(set2).member(num));
+            return (!(set1.member(num)||set2.member(num)));
         }      
     }
     
     public boolean TestAddRemoveEqual(FiniteSets set1, int num){
-        
+        return (set1.add(num).remove(num).equal(set1));
     }
 
    public static void main(String[] args) {
