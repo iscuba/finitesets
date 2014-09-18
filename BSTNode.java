@@ -43,8 +43,7 @@ public class BSTNode implements FiniteSets {
     }
 
     public FiniteSets remove(int elt) {
-        if (elt == this.data) {
-// fix return value for this case             
+        if (elt == this.data) {             
             return this.left.union(this.right);
         } else if (elt < this.data) {
             return new BSTNode(left.remove(elt), this.data, right);

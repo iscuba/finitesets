@@ -32,29 +32,57 @@ public class Test {
         }
     }
     
-    public boolean testUnionSubset(FiniteSets set1, FiniteSets set2){
-        return ((set1.subset(set1.union(set2))) && (set2.subset(set1.union(set2))));
+    public void testUnionSubset(FiniteSets set1, FiniteSets set2){
+        if ((set1.subset(set1.union(set2))) && (set2.subset(set1.union(set2))))
+            System.out.println("Success");
+        else {System.out.println("Failure");}
     }
     
-    public boolean testMemberAdd(FiniteSets set1, int num){
-        return (set1.add(num).member(num));
+    public void testMemberAdd(FiniteSets set1, int num){
+        if (set1.add(num).member(num))
+            System.out.println("Success");
+        else {System.out.println("Fail");}
     }
     
-    public boolean testAddCardinality(FiniteSets set1, int num){
-        return ((set1.cardinality() + 1) == (set1.add(num).cardinality()));
+    public void testAddCardinality(FiniteSets set1, int num){
+        if ((set1.cardinality() + 1) == (set1.add(num).cardinality()))
+            System.out.println("Success");
+        else { System.out.println("Fail");}
     }
  
-    public boolean testUnionMember(FiniteSets set1, FiniteSets set2, int num){
-        if(set1.union(set2).member(num)){
-            return (set1.member(num)||(set2.member(num)));
-        } else {
+    public void testUnionMember(FiniteSets set1, FiniteSets set2, int num){
+        if(set1.union(set2).member(num)==(set1.member(num)||(set2.member(num)))){
+            System.out.println("success");
+        } else if (!(set1.member(num)||set2.member(num))){
             System.out.println("the number was not a member of the set");
-            return (!(set1.member(num)||set2.member(num)));
-        }      
+        } else { 
+             System.out.println("Fail ");
+        }
     }
     
-    public boolean TestAddRemoveEqual(FiniteSets set1, int num){
-        return (set1.add(num).remove(num).equal(set1));
+    public void testAddRemoveEqual(FiniteSets set1, int num){
+        if (set1.add(num).remove(num).equal(set1))
+            System.out.println("Success");
+        else {
+            System.out.println("Fail");
+        }
+    }    
+    
+    public void testEqualUnionInterDiff(FiniteSets set1, FiniteSets set2, int num){
+        if ((set1.inter(set2).union(set1.diff(set2).union(set2.diff(set1)))).equal(set1.union(set2)))
+            System.out.println("Success");
+        else{
+            System.out.println("Fail");
+        }
+            
+    }
+    
+    public void testUnionLeaf(FiniteSets set, Leaf leaf){
+        if (set.union(leaf) == set){
+             System.out.println("success");
+        } else {
+             System.out.println("Fail");
+        }
     }
 
    public static void main(String[] args) {
