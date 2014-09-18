@@ -48,9 +48,4 @@ public class Leaf implements FiniteSets{
         return u.isEmptyHuh();
     }
     
-    public static void main(String[] args){
-        Leaf bloom = new Leaf();
-        
-    }
-    
 }
