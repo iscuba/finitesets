@@ -43,7 +43,7 @@ public class BSTree implements FiniteSets {
     }
 
     public FiniteSets remove(int elt) {
-        if (elt == data) {             
+        if (elt == data) {
             return left.union(right);
         } else if (elt < data) {
             return new BSTree(left.remove(elt), data, right);
@@ -78,7 +78,8 @@ public class BSTree implements FiniteSets {
 
     public FiniteSets diff(FiniteSets u) {
         if (u.member(data)) {
-            return left.diff(u).union(right.diff(u));
+            return u.remove(data).union(left.union(right)).diff(u);
+//            return left.diff(u).union(right.diff(u));
         } else {
             return new BSTree(left.diff(u), data, right.diff(u));
         }
