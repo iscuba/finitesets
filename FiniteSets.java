@@ -11,8 +11,6 @@ package finitesets;
  */
 public interface FiniteSets {
 
-    public FiniteSets empty();
-
     public int cardinality();
 
     public boolean isEmptyHuh();

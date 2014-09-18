@@ -20,7 +20,7 @@ public class BSTNode implements FiniteSets {
         data = n;
     }
 
-    public FiniteSets empty() {
+    public static FiniteSets empty() {
         return new Leaf();
     }
 
@@ -37,43 +37,20 @@ public class BSTNode implements FiniteSets {
             return this;
         } else if (num < data) {
             return new BSTNode(this.left.add(num), this.data, this.right);
-//                if (!left.isEmptyHuh()) {
-//                    left.add(num);
-//                } else {
-//                    left = new BSTNode(new Leaf(), num, new Leaf());
-//                }
-        } //            else if (!right.isEmptyHuh()) {
-        //                right.add(num); 
-        else {
+        } else {
             return new BSTNode(this.left, this.data, this.right.add(num));
-//                right = new BSTNode(new Leaf(), num, new Leaf());
         }
     }
 
     public FiniteSets remove(int elt) {
-        if (elt == this.data){
+        if (elt == this.data) {
 // fix return value for this case             
             return this.left.union(this.right);
-        } else if (elt < this.data){
-            return new BSTNode(left.remove(elt), this.data,right);
+        } else if (elt < this.data) {
+            return new BSTNode(left.remove(elt), this.data, right);
+        } else {
+            return new BSTNode(left, this.data, right.remove(elt));
         }
-        else{
-            return new BSTNode(left, this.data,right.remove(elt));
-        }
-//        if (num == data) {
-//            return deleteRoot();
-//        } else {
-//            if (num < data) {
-//                if (left != null) {
-//                    left = left.remove(num);
-//                }
-//            } else {
-//                if (right != null) {
-//                    right = right.remove(num);
-//                }
-//            }
-//            return this;
-//        }
     }
 
     public boolean member(int elt) {
@@ -88,7 +65,7 @@ public class BSTNode implements FiniteSets {
     }
 
     public FiniteSets union(FiniteSets u) {
-        return this.left.union(this.right.union(u)).add(data);
+        return left.union(right.union(u)).add(data);
 
     }
 
@@ -101,25 +78,19 @@ public class BSTNode implements FiniteSets {
     }
 
     public FiniteSets diff(FiniteSets u) {
-        if (u.member(data)){
+        if (u.member(data)) {
             return left.diff(u).union(right.diff(u));
-        } 
-        else{
-            return new BSTNode(left.diff(u), data, right.diff(u));  
+        } else {
+            return new BSTNode(left.diff(u), data, right.diff(u));
         }
     }
 
     public boolean equal(FiniteSets u) {
-        if (u.member(data))
+        return (subset(u) && u.subset(this));
     }
 
     public boolean subset(FiniteSets u) {
-        if(this.equal(u))
-            return true;
-        else if{
-            
-        }
+        return (u.member(data) && left.subset(u) && right.subset(u));
 
     }
-
 }
