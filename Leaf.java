@@ -27,7 +27,7 @@ public class Leaf implements FiniteSets{
         return false;
     }
     public FiniteSets add(int elt){
-        return new BSTNode(new Leaf(), elt, new Leaf());
+        return new BSTree(new Leaf(), elt, new Leaf());
     }
     public FiniteSets remove(int elt){
         return new Leaf();

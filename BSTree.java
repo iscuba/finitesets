@@ -9,12 +9,12 @@ package finitesets;
  *
  * @author Isabella
  */
-public class BSTNode implements FiniteSets {
+public class BSTree implements FiniteSets {
 
     FiniteSets left, right;
     int data;
 
-    public BSTNode(FiniteSets left, int n, FiniteSets right) {
+    public BSTree(FiniteSets left, int n, FiniteSets right) {
         this.left = left;
         this.right = right;
         data = n;
@@ -36,19 +36,19 @@ public class BSTNode implements FiniteSets {
         if (num == data) {
             return this;
         } else if (num < data) {
-            return new BSTNode(this.left.add(num), this.data, this.right);
+            return new BSTree(this.left.add(num), this.data, this.right);
         } else {
-            return new BSTNode(this.left, this.data, this.right.add(num));
+            return new BSTree(this.left, this.data, this.right.add(num));
         }
     }
 
     public FiniteSets remove(int elt) {
-        if (elt == this.data) {             
-            return this.left.union(this.right);
-        } else if (elt < this.data) {
-            return new BSTNode(left.remove(elt), this.data, right);
+        if (elt == data) {             
+            return left.union(right);
+        } else if (elt < data) {
+            return new BSTree(left.remove(elt), data, right);
         } else {
-            return new BSTNode(left, this.data, right.remove(elt));
+            return new BSTree(left, this.data, right.remove(elt));
         }
     }
 
@@ -70,7 +70,7 @@ public class BSTNode implements FiniteSets {
 
     public FiniteSets inter(FiniteSets u) {
         if (u.member(this.data)) {
-            return new BSTNode(this.left.inter(u), data, this.right.inter(u));
+            return new BSTree(this.left.inter(u), data, this.right.inter(u));
         } else {
             return left.inter(u).union(right.inter(u));
         }
@@ -80,12 +80,12 @@ public class BSTNode implements FiniteSets {
         if (u.member(data)) {
             return left.diff(u).union(right.diff(u));
         } else {
-            return new BSTNode(left.diff(u), data, right.diff(u));
+            return new BSTree(left.diff(u), data, right.diff(u));
         }
     }
 
     public boolean equal(FiniteSets u) {
-        return (subset(u) && u.subset(this));
+        return (this.subset(u) && u.subset(this));
     }
 
     public boolean subset(FiniteSets u) {

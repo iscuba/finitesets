@@ -13,13 +13,13 @@ import java.util.*;
  */
 public class Test {
 
-    public int randNum(int min, int max) {
+    public static int randNum(int min, int max) {
         Random rand = new Random();
         int randNum = rand.nextInt((max - min) + 1) + min;
         return randNum;
     }
 
-    public FiniteSets randSet(FiniteSets start, int length) {
+    public static FiniteSets randSet(FiniteSets start, int length) {
         if (start.cardinality() == length) {
             return start;
         } else {
@@ -32,7 +32,7 @@ public class Test {
         }
     }
 
-    public void testUnionSubset(FiniteSets set1, FiniteSets set2) {
+    public static void testUnionSubset(FiniteSets set1, FiniteSets set2) {
         if ((set1.subset(set1.union(set2))) && (set2.subset(set1.union(set2)))) {
             System.out.println("Success for testUnionSubset");
         } else {
@@ -40,7 +40,7 @@ public class Test {
         }
     }
 
-    public void testMemberAdd(FiniteSets set1, int num) {
+    public static void testMemberAdd(FiniteSets set1, int num) {
         if (set1.add(num).member(num)) {
             System.out.println("Success for testMemberAdd");
         } else {
@@ -48,15 +48,15 @@ public class Test {
         }
     }
 
-    public void testAddCardinality(FiniteSets set1, int num) {
-        if ((set1.cardinality() + 1) == (set1.add(num).cardinality())) {
+    public static void testAddCardinality(FiniteSets set1, int num) {
+        if ((set1.cardinality() + 1) == ((set1.add(num)).cardinality())) {
             System.out.println("Success for testAddCardinality");
         } else {
             System.out.println("Fail for testAddCardinality");
         }
     }
 
-    public void testUnionMember(FiniteSets set1, FiniteSets set2, int num) {
+    public static void testUnionMember(FiniteSets set1, FiniteSets set2, int num) {
         if (set1.union(set2).member(num) == (set1.member(num) || (set2.member(num)))) {
             System.out.println("success for testUnionMember");
         } else if (!(set1.member(num) || set2.member(num))) {
@@ -66,16 +66,16 @@ public class Test {
         }
     }
 
-    public void testAddRemoveEqual(FiniteSets set1, int num) {
-        if (set1.add(num).remove(num).equal(set1)) {
+    public static void testAddRemoveEqual(FiniteSets set1, int num) {
+        if (((set1.add(num)).remove(num)).equal(set1)) {
             System.out.println("Success for testAddRemoveEqual");
         } else {
             System.out.println("Fail for testAddRemoveEqual");
         }
     }
 
-    public void testEqualUnionInterDiff(FiniteSets set1, FiniteSets set2, int num) {
-        if ((set1.inter(set2).union(set1.diff(set2).union(set2.diff(set1)))).equal(set1.union(set2))) {
+    public static void testEqualUnionInterDiff(FiniteSets set1, FiniteSets set2, int num) {
+        if (((set1.inter(set2)).union(set2.diff(set1)).union(set1.diff(set2))).equal(set1.union(set2))) {
             System.out.println("Success for testEqualUnionInterDiff");
         } else {
             System.out.println("Fail for testEqualUnionInterDiff");
@@ -83,23 +83,23 @@ public class Test {
 
     }
 
-    public void testUnionLeaf(FiniteSets set, Leaf leaf) {
-        if (set.union(leaf) == set) {
+    public static void testUnionLeaf(FiniteSets set, Leaf leaf) {
+        if (leaf.union(set) == set) {
             System.out.println("success for testUnionLeaf");
         } else {
             System.out.println("Fail for testUnionLeaf");
         }
     }
 
-    public void testEmptyInter(FiniteSets set, Leaf leaf) {
-        if (leaf.inter(set).isEmptyHuh()) {
+    public static void testEmptyInter(FiniteSets set, Leaf leaf) {
+        if (set.inter(leaf).isEmptyHuh()) {
             System.out.println("success for testEmptyInter");
         } else {
             System.out.println("Fail for testEmptyInter");
         }
     }
     
-    public void testDiffEmpty(FiniteSets set, Leaf leaf){
+    public static void testDiffEmpty(FiniteSets set, Leaf leaf){
         if (set.diff(leaf).equal(set))
              System.out.println("success for testDiffEmpty");
         else{
@@ -107,18 +107,125 @@ public class Test {
         }
     }
     
-    public void testInter(FiniteSets set1, FiniteSets set2, int elt){
+    public static void testInter(FiniteSets set1, FiniteSets set2, int elt){
         if(set1.add(elt).inter(set2.add(elt)).isEmptyHuh())
             System.out.println("fail for testInter");
         else {
-            System.out.println("Success for testDiffEmpty");
+            System.out.println("Success for testinter");
         }
     }
-    
-    public void 
+     
 
     public static void main(String[] args) {
-        Leaf bloom = new Leaf();
-
+        
+        testUnionSubset(randSet(new Leaf(), randNum(0,100)),randSet(new Leaf(), randNum(1,100)));
+        testUnionSubset(randSet(new Leaf(), randNum(1,100)),randSet(new Leaf(), randNum(1,100)));
+        testUnionSubset(randSet(new Leaf(), randNum(1,100)),randSet(new Leaf(), randNum(1,100)));
+        testUnionSubset(randSet(new Leaf(), randNum(1,100)),randSet(new Leaf(), randNum(1,100)));
+        testUnionSubset(randSet(new Leaf(), randNum(1,100)),randSet(new Leaf(), randNum(1,100)));
+        testUnionSubset(randSet(new Leaf(), randNum(1,100)),randSet(new Leaf(), randNum(1,100)));
+        testUnionSubset(randSet(new Leaf(), randNum(1,100)),randSet(new Leaf(), randNum(1,100)));
+        testUnionSubset(randSet(new Leaf(), randNum(1,100)),randSet(new Leaf(), randNum(1,100)));
+        testUnionSubset(randSet(new Leaf(), randNum(1,100)),randSet(new Leaf(), randNum(1,100)));
+        testUnionSubset(randSet(new Leaf(), randNum(1,100)),randSet(new Leaf(), randNum(1,100)));
+        
+        testMemberAdd(randSet(new Leaf(), randNum(1,100)), randNum(0,100));
+        testMemberAdd(randSet(new Leaf(), randNum(1,100)), randNum(0,100));
+        testMemberAdd(randSet(new Leaf(), randNum(1,100)), randNum(0,100));
+        testMemberAdd(randSet(new Leaf(), randNum(1,100)), randNum(0,100));
+        testMemberAdd(randSet(new Leaf(), randNum(1,100)), randNum(0,100));
+        testMemberAdd(randSet(new Leaf(), randNum(1,100)), randNum(0,100));
+        testMemberAdd(randSet(new Leaf(), randNum(1,100)), randNum(0,100));
+        testMemberAdd(randSet(new Leaf(), randNum(1,100)), randNum(0,100));
+        testMemberAdd(randSet(new Leaf(), randNum(1,100)), randNum(0,100));
+        testMemberAdd(randSet(new Leaf(), randNum(1,100)), randNum(0,100));
+        
+        testAddCardinality(randSet(new Leaf(), randNum(1,100)), randNum(0,100));
+        testAddCardinality(randSet(new Leaf(), randNum(1,100)), randNum(0,100));
+        testAddCardinality(randSet(new Leaf(), randNum(1,100)), randNum(0,100));
+        testAddCardinality(randSet(new Leaf(), randNum(1,100)), randNum(0,100));
+        testAddCardinality(randSet(new Leaf(), randNum(1,100)), randNum(0,100));
+        testAddCardinality(randSet(new Leaf(), randNum(1,100)), randNum(0,100));
+        testAddCardinality(randSet(new Leaf(), randNum(1,100)), randNum(0,100));
+        testAddCardinality(randSet(new Leaf(), randNum(1,100)), randNum(0,100));
+        testAddCardinality(randSet(new Leaf(), randNum(1,100)), randNum(0,100));
+        testAddCardinality(randSet(new Leaf(), randNum(1,100)), randNum(0,100));
+        
+        testUnionMember(randSet(new Leaf(), randNum(1,100)), randSet(new Leaf(), randNum(1,100)), randNum(0,100));
+        testUnionMember(randSet(new Leaf(), randNum(1,100)), randSet(new Leaf(), randNum(1,100)), randNum(0,100));
+        testUnionMember(randSet(new Leaf(), randNum(1,100)), randSet(new Leaf(), randNum(1,100)), randNum(0,100));
+        testUnionMember(randSet(new Leaf(), randNum(1,100)), randSet(new Leaf(), randNum(1,100)), randNum(0,100));
+        testUnionMember(randSet(new Leaf(), randNum(1,100)), randSet(new Leaf(), randNum(1,100)), randNum(0,100));
+        testUnionMember(randSet(new Leaf(), randNum(1,100)), randSet(new Leaf(), randNum(1,100)), randNum(0,100));
+        testUnionMember(randSet(new Leaf(), randNum(1,100)), randSet(new Leaf(), randNum(1,100)), randNum(0,100));
+        testUnionMember(randSet(new Leaf(), randNum(1,100)), randSet(new Leaf(), randNum(1,100)), randNum(0,100));
+        testUnionMember(randSet(new Leaf(), randNum(1,100)), randSet(new Leaf(), randNum(1,100)), randNum(0,100));
+        testUnionMember(randSet(new Leaf(), randNum(1,100)), randSet(new Leaf(), randNum(1,100)), randNum(0,100));
+        
+        testAddRemoveEqual(randSet(new Leaf(), randNum(1,100)), randNum(0,100));
+        testAddRemoveEqual(randSet(new Leaf(), randNum(1,100)), randNum(0,100));
+        testAddRemoveEqual(randSet(new Leaf(), randNum(1,100)), randNum(0,100));
+        testAddRemoveEqual(randSet(new Leaf(), randNum(1,100)), randNum(0,100));
+        testAddRemoveEqual(randSet(new Leaf(), randNum(1,100)), randNum(0,100));
+        testAddRemoveEqual(randSet(new Leaf(), randNum(1,100)), randNum(0,100));
+        testAddRemoveEqual(randSet(new Leaf(), randNum(1,100)), randNum(0,100));
+        testAddRemoveEqual(randSet(new Leaf(), randNum(1,100)), randNum(0,100));
+        testAddRemoveEqual(randSet(new Leaf(), randNum(1,100)), randNum(0,100));
+        testAddRemoveEqual(randSet(new Leaf(), randNum(1,100)), randNum(0,100));
+        
+        testEqualUnionInterDiff(randSet(new Leaf(), randNum(1,100)), randSet(new Leaf(), randNum(1,100)), randNum(0,100));
+        testEqualUnionInterDiff(randSet(new Leaf(), randNum(1,100)), randSet(new Leaf(), randNum(1,100)), randNum(0,100));
+        testEqualUnionInterDiff(randSet(new Leaf(), randNum(1,100)), randSet(new Leaf(), randNum(1,100)), randNum(0,100));
+        testEqualUnionInterDiff(randSet(new Leaf(), randNum(1,100)), randSet(new Leaf(), randNum(1,100)), randNum(0,100));
+        testEqualUnionInterDiff(randSet(new Leaf(), randNum(1,100)), randSet(new Leaf(), randNum(1,100)), randNum(0,100));
+        testEqualUnionInterDiff(randSet(new Leaf(), randNum(1,100)), randSet(new Leaf(), randNum(1,100)), randNum(0,100));
+        testEqualUnionInterDiff(randSet(new Leaf(), randNum(1,100)), randSet(new Leaf(), randNum(1,100)), randNum(0,100));
+        testEqualUnionInterDiff(randSet(new Leaf(), randNum(1,100)), randSet(new Leaf(), randNum(1,100)), randNum(0,100));
+        testEqualUnionInterDiff(randSet(new Leaf(), randNum(1,100)), randSet(new Leaf(), randNum(1,100)), randNum(0,100));
+        testEqualUnionInterDiff(randSet(new Leaf(), randNum(1,100)), randSet(new Leaf(), randNum(1,100)), randNum(0,100));
+        
+        testUnionLeaf(randSet(new Leaf(), randNum(1,100)), new Leaf());
+        testUnionLeaf(randSet(new Leaf(), randNum(1,100)), new Leaf());
+        testUnionLeaf(randSet(new Leaf(), randNum(1,100)), new Leaf());
+        testUnionLeaf(randSet(new Leaf(), randNum(1,100)), new Leaf());
+        testUnionLeaf(randSet(new Leaf(), randNum(1,100)), new Leaf());
+        testUnionLeaf(randSet(new Leaf(), randNum(1,100)), new Leaf());
+        testUnionLeaf(randSet(new Leaf(), randNum(1,100)), new Leaf());
+        testUnionLeaf(randSet(new Leaf(), randNum(1,100)), new Leaf());
+        testUnionLeaf(randSet(new Leaf(), randNum(1,100)), new Leaf());
+        testUnionLeaf(randSet(new Leaf(), randNum(1,100)), new Leaf());
+        
+        testEmptyInter(randSet(new Leaf(), randNum(1,100)), new Leaf());
+        testEmptyInter(randSet(new Leaf(), randNum(1,100)), new Leaf());
+        testEmptyInter(randSet(new Leaf(), randNum(1,100)), new Leaf());
+        testEmptyInter(randSet(new Leaf(), randNum(1,100)), new Leaf());
+        testEmptyInter(randSet(new Leaf(), randNum(1,100)), new Leaf());
+        testEmptyInter(randSet(new Leaf(), randNum(1,100)), new Leaf());
+        testEmptyInter(randSet(new Leaf(), randNum(1,100)), new Leaf());
+        testEmptyInter(randSet(new Leaf(), randNum(1,100)), new Leaf());
+        testEmptyInter(randSet(new Leaf(), randNum(1,100)), new Leaf());
+        testEmptyInter(randSet(new Leaf(), randNum(1,100)), new Leaf());
+        
+        testDiffEmpty(randSet(new Leaf(), randNum(1,100)), new Leaf());
+        testDiffEmpty(randSet(new Leaf(), randNum(1,100)), new Leaf());
+        testDiffEmpty(randSet(new Leaf(), randNum(1,100)), new Leaf());
+        testDiffEmpty(randSet(new Leaf(), randNum(1,100)), new Leaf());
+        testDiffEmpty(randSet(new Leaf(), randNum(1,100)), new Leaf());
+        testDiffEmpty(randSet(new Leaf(), randNum(1,100)), new Leaf());
+        testDiffEmpty(randSet(new Leaf(), randNum(1,100)), new Leaf());
+        testDiffEmpty(randSet(new Leaf(), randNum(1,100)), new Leaf());
+        testDiffEmpty(randSet(new Leaf(), randNum(1,100)), new Leaf());
+        testDiffEmpty(randSet(new Leaf(), randNum(1,100)), new Leaf());
+        
+        testInter(randSet(new Leaf(), randNum(1,100)), randSet(new Leaf(), randNum(1,100)), randNum(0, 100));
+        testInter(randSet(new Leaf(), randNum(1,100)), randSet(new Leaf(), randNum(1,100)), randNum(0, 100));
+        testInter(randSet(new Leaf(), randNum(1,100)), randSet(new Leaf(), randNum(1,100)), randNum(0, 100));
+        testInter(randSet(new Leaf(), randNum(1,100)), randSet(new Leaf(), randNum(1,100)), randNum(0, 100));
+        testInter(randSet(new Leaf(), randNum(1,100)), randSet(new Leaf(), randNum(1,100)), randNum(0, 100));
+        testInter(randSet(new Leaf(), randNum(1,100)), randSet(new Leaf(), randNum(1,100)), randNum(0, 100));
+        testInter(randSet(new Leaf(), randNum(1,100)), randSet(new Leaf(), randNum(1,100)), randNum(0, 100));
+        testInter(randSet(new Leaf(), randNum(1,100)), randSet(new Leaf(), randNum(1,100)), randNum(0, 100));
+        testInter(randSet(new Leaf(), randNum(1,100)), randSet(new Leaf(), randNum(1,100)), randNum(0, 100));
+        testInter(randSet(new Leaf(), randNum(1,100)), randSet(new Leaf(), randNum(1,100)), randNum(0, 100));
     }
 }
