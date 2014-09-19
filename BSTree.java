@@ -78,8 +78,10 @@ public class BSTree implements FiniteSets {
 
     public FiniteSets diff(FiniteSets u) {
         if (u.member(data)) {
-//            return u.remove(data).union(left.union(right)).diff(u);
+// I realize this doesnt work. 
             return left.diff(u).union(right.diff(u));
+//            return this.remove(data).union(left.union(right)).diff(u);
+//            return left.diff(u).union(right.diff(u));
         } else {
             return new BSTree(left.diff(u), data, right.diff(u));
         }
