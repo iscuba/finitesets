@@ -5,6 +5,7 @@
  */
 package finitesets;
 
+import static finitesets.BSTree.empty;
 import java.util.*;
 
 /**
@@ -31,13 +32,19 @@ public class Test {
             }
         }
     }
+
+    public static void checkEmpty(FiniteSets MT){
+        if (MT.isEmptyHuh())
+            System.out.println("Success for checkEmpty");
+        else { System.out.println("Fail for checkAdd");}
+    }
     
-    public static void checkAdd(FiniteSets set){
-        int num = randNum(0,100);
+    public static void checkAdd(FiniteSets set) {
+        int num = randNum(0, 100);
         FiniteSets set2 = set.add(num);
-        if(set2.member(num))
+        if (set2.member(num)) {
             System.out.println("Success for checkAdd");
-        else{
+        } else {
             System.out.println("Fali for checkAdd");
         }
     }
@@ -61,7 +68,7 @@ public class Test {
 
     public static void testAddCardinality(FiniteSets set1, int num) {
         int test = set1.add(num).cardinality();
-        if (((set1.cardinality() + 1) == test)|| (set1.cardinality() == test)) {
+        if (((set1.cardinality() + 1) == test) || (set1.cardinality() == test)) {
             System.out.println("Success for testAddCardinality");
         } else {
             System.out.println("Fail for testAddCardinality");
@@ -85,8 +92,8 @@ public class Test {
             System.out.println("Fail for testAddRemoveEqual");
         }
     }
-    
-    public static void testSubset(FiniteSets set1, FiniteSets set2, FiniteSets set3){
+
+    public static void testSubset(FiniteSets set1, FiniteSets set2, FiniteSets set3) {
         if ((set1.union(set2)).subset(set3)
                 == (set1.subset(set3) && set2.subset(set3))) {
             System.out.println("Success for testSubset");
@@ -138,6 +145,17 @@ public class Test {
 
     public static void main(String[] args) {
         
+        checkEmpty(empty());
+        checkEmpty(empty());
+        checkEmpty(empty());
+        checkEmpty(empty());
+        checkEmpty(empty());
+        checkEmpty(empty());
+        checkEmpty(empty());
+        checkEmpty(empty());
+        checkEmpty(empty());
+        checkEmpty(empty());
+
         checkAdd(randSet(new Leaf(), randNum(1, 100)));
         checkAdd(randSet(new Leaf(), randNum(1, 100)));
         checkAdd(randSet(new Leaf(), randNum(1, 100)));
@@ -205,7 +223,6 @@ public class Test {
         testAddRemoveEqual(randSet(new Leaf(), randNum(1, 100)), randNum(0, 100));
         testAddRemoveEqual(randSet(new Leaf(), randNum(1, 100)), randNum(0, 100));
         testAddRemoveEqual(randSet(new Leaf(), randNum(1, 100)), randNum(0, 100));
-        
 
         testSubset(randSet(new Leaf(), randNum(1, 100)), randSet(new Leaf(), randNum(1, 100)), randSet(new Leaf(), randNum(1, 100)));
         testSubset(randSet(new Leaf(), randNum(1, 100)), randSet(new Leaf(), randNum(1, 100)), randSet(new Leaf(), randNum(1, 100)));
